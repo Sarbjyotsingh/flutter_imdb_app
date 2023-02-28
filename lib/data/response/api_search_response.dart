@@ -1,6 +1,7 @@
 import 'package:flutter_imdb_app/data/app_exceptions.dart';
 import 'package:flutter_imdb_app/data/network/network_api_service.dart';
 import 'package:flutter_imdb_app/models/api_repsonse_model/api_response_model.dart';
+import 'package:flutter_imdb_app/models/api_repsonse_model/api_response_status.dart';
 
 class MovieSearchAPI {
   final String _apiEndPoint = 'https://www.omdbapi.com';
@@ -14,9 +15,9 @@ class MovieSearchAPI {
         apiResponse = APIResponseModel.fromJson(
             await NetworkApiService().getGetApiResponse(fetchUrl));
       } on TooManyResultsException catch (_) {
-        return APIResponseModel();
+        return APIResponseModel()..status = APIResponseStatus.tooManyResults;
       } on MovieNotFoundException catch (_) {
-        return APIResponseModel();
+        return APIResponseModel()..status = APIResponseStatus.movieNotFound;
       }
     } else {
       apiResponse = APIResponseModel();
