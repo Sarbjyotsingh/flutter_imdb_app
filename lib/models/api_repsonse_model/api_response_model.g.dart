@@ -8,7 +8,7 @@ part of 'api_response_model.dart';
 
 APIResponseModel _$APIResponseModelFromJson(Map<String, dynamic> json) =>
     APIResponseModel(
-      totalResults: json['totalResults'] as int?,
+      totalResults: json['totalResults'] as String?,
       search: (json['Search'] as List<dynamic>?)
               ?.map((e) => MovieModel.fromJson(e as Map<String, dynamic>))
               .toList() ??

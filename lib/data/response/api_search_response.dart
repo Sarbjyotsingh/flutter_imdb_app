@@ -8,9 +8,9 @@ class MovieSearchAPI {
   Future<APIResponseModel> getMovieSearchResponse(String searchText) async {
     APIResponseModel apiResponse;
     if (searchText.isNotEmpty) {
-      String fetchUrl = '$_apiEndPoint/?s={$searchText}&apikey=$_apiKey';
-
-      apiResponse = await NetworkApiService().getGetApiResponse(fetchUrl);
+      String fetchUrl = '$_apiEndPoint/?s=$searchText&apikey=$_apiKey';
+      apiResponse = APIResponseModel.fromJson(
+          await NetworkApiService().getGetApiResponse(fetchUrl));
     } else {
       apiResponse = APIResponseModel();
     }

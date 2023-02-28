@@ -5,7 +5,7 @@ part 'api_response_model.g.dart';
 
 @JsonSerializable()
 class APIResponseModel {
-  int? totalResults;
+  String? totalResults;
 
   @JsonKey(name: 'Search')
   List<MovieModel> search;

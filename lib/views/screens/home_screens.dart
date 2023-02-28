@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_imdb_app/controller/movie_search_controller.dart';
 import 'package:flutter_imdb_app/utils/constants.dart';
 import 'package:flutter_imdb_app/utils/helpers/debouncer.dart';
 import 'package:flutter_imdb_app/views/widgets/custom_search_field.dart';
@@ -16,8 +17,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   final _debouncer = Debouncer(milliseconds: 300);
 
-  void _onSearchValueChanged(String value) {
-    _debouncer.run(() {});
+  void _onSearchValueChanged(String value, WidgetRef ref) {
+    _debouncer.run(() {
+      var controller = ref.read(searchControllerProvider.notifier);
+      controller.updateSearch(value);
+    });
   }
 
   @override
@@ -31,7 +35,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               CustomSearchField(
                 hintText: kSearchHintText,
                 searchController: _searchController,
-                onChanged: (value) => _onSearchValueChanged(value),
+                onChanged: (value) => _onSearchValueChanged(value, ref),
               ),
             ],
           ),
