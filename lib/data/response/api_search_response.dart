@@ -13,7 +13,8 @@ class MovieSearchAPI {
       String fetchUrl = '$_apiEndPoint/?s=$searchText&apikey=$_apiKey';
       try {
         apiResponse = APIResponseModel.fromJson(
-            await NetworkApiService().getGetApiResponse(fetchUrl));
+            await NetworkApiService().getGetApiResponse(fetchUrl))
+          ..status = APIResponseStatus.success;
       } on TooManyResultsException catch (_) {
         return APIResponseModel()..status = APIResponseStatus.tooManyResults;
       } on MovieNotFoundException catch (_) {
