@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_imdb_app/controller/movie_search_controller.dart';
 import 'package:flutter_imdb_app/utils/constants.dart';
 import 'package:flutter_imdb_app/utils/helpers/debouncer.dart';
+import 'package:flutter_imdb_app/views/widgets/custom_progress_indicator.dart';
 import 'package:flutter_imdb_app/views/widgets/custom_search_field.dart';
 import 'package:flutter_imdb_app/views/widgets/movie_tile.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -24,6 +25,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       controller.updateSearch(value);
     });
   }
+
+  static const _progressLoading = CustomProgressIndicator();
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +65,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       );
                     },
                     loading: () {
-                      // Show a loading spinner or something
-                      return const Text('Loading');
+                      return _progressLoading;
                     },
                     error: (error, stackTrace) {
                       // Show an error message
