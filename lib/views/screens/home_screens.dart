@@ -3,6 +3,7 @@ import 'package:flutter_imdb_app/controller/movie_search_controller.dart';
 import 'package:flutter_imdb_app/utils/constants.dart';
 import 'package:flutter_imdb_app/utils/helpers/debouncer.dart';
 import 'package:flutter_imdb_app/views/widgets/custom_search_field.dart';
+import 'package:flutter_imdb_app/views/widgets/movie_tile.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
@@ -37,6 +38,40 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 searchController: _searchController,
                 onChanged: (value) => _onSearchValueChanged(value, ref),
               ),
+              const SizedBox(
+                height: 10,
+              ),
+              Consumer(
+                builder: (context, ref, child) {
+                  final searchState = ref.watch(searchControllerProvider);
+                  return searchState.when(
+                    data: (data) {
+                      return Expanded(
+                        child: GridView.builder(
+                          itemCount: data.search.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return MovieTile(movieModel: data.search[index]);
+                          },
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10,
+                          ),
+                        ),
+                      );
+                    },
+                    loading: () {
+                      // Show a loading spinner or something
+                      return const Text('Loading');
+                    },
+                    error: (error, stackTrace) {
+                      // Show an error message
+                      return Text(error.toString());
+                    },
+                  );
+                },
+              )
             ],
           ),
         ),
