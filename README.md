@@ -33,7 +33,7 @@ or any duration you specify, we have accomplished this.
 
 ## Demo Video:
 
-https://user-images.githubusercontent.com/28133782/221993146-dc073c02-a606-46f8-a638-407ad265920c.mp4
+![demo](https://user-images.githubusercontent.com/28133782/221993490-3af50fde-5b8d-4498-adee-7d535d159ce3.jpeg)
 
 
 
