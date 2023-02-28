@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final searchControllerProvider = StateNotifierProvider<SearchControllerNotifier,
     AsyncValue<APIResponseModel>>(
-      (ref) => SearchControllerNotifier(),
+  (ref) => SearchControllerNotifier(),
 );
 
 class SearchControllerNotifier
