@@ -39,17 +39,13 @@ class MovieDetailScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: kMovieTitleTextStyle,
               ),
-              const SizedBox(
-                height: 5,
-              ),
+              customSizedBox(),
               Text(
                 'Release Date: ${movieModel.year}',
                 textAlign: TextAlign.center,
                 style: kMovieSubTitleTextStyle,
               ),
-              const SizedBox(
-                height: 5,
-              ),
+              customSizedBox(),
               Text(
                 'Type: ${movieModel.type}',
                 textAlign: TextAlign.center,
@@ -59,6 +55,12 @@ class MovieDetailScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  SizedBox customSizedBox() {
+    return const SizedBox(
+      height: 5,
     );
   }
 }

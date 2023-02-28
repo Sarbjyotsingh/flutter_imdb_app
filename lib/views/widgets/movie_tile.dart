@@ -23,5 +23,3 @@ class MovieTile extends StatelessWidget {
     );
   }
 }
-
-
