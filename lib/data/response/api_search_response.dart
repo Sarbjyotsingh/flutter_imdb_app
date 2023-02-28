@@ -1,3 +1,4 @@
+import 'package:flutter_imdb_app/data/app_exceptions.dart';
 import 'package:flutter_imdb_app/data/network/network_api_service.dart';
 import 'package:flutter_imdb_app/models/api_repsonse_model/api_response_model.dart';
 
@@ -9,8 +10,14 @@ class MovieSearchAPI {
     APIResponseModel apiResponse;
     if (searchText.isNotEmpty) {
       String fetchUrl = '$_apiEndPoint/?s=$searchText&apikey=$_apiKey';
-      apiResponse = APIResponseModel.fromJson(
-          await NetworkApiService().getGetApiResponse(fetchUrl));
+      try {
+        apiResponse = APIResponseModel.fromJson(
+            await NetworkApiService().getGetApiResponse(fetchUrl));
+      } on TooManyResultsException catch (_) {
+        return APIResponseModel();
+      } on MovieNotFoundException catch (_) {
+        return APIResponseModel();
+      }
     } else {
       apiResponse = APIResponseModel();
     }

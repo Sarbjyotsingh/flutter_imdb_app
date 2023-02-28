@@ -42,8 +42,20 @@ class NetworkApiService extends BaseApiServices {
       case 'True':
         return responseJson;
       default:
-        throw FetchDataException(
-            'Error accured while communicating with server with Error:${responseJson['Error']}');
+        {
+          final String errorCode = responseJson['Error'];
+          if (errorCode == 'Too many results.') {
+            throw TooManyResultsException(
+                'Error accured while communicating with server with Error: Too many results.');
+          }
+          if (errorCode == 'Movie not found!') {
+            throw MovieNotFoundException(
+                'Error accured while communicating with server with Error: Movie not found!');
+          } else {
+            throw FetchDataException(
+                'Error accured while communicating with server with Error:$errorCode');
+          }
+        }
     }
   }
 }

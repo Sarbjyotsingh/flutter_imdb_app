@@ -14,15 +14,12 @@ class FetchDataException extends AppException {
       : super(message, 'Error During Communication');
 }
 
-class BadRequestException extends AppException {
-  BadRequestException([String? message]) : super(message, 'Invalid request');
+class TooManyResultsException extends AppException {
+  TooManyResultsException([String? message])
+      : super(message, 'Too Many Results.');
 }
 
-class UnauthorisedException extends AppException {
-  UnauthorisedException([String? message])
-      : super(message, 'Unauthorised request');
-}
-
-class InvalidInputException extends AppException {
-  InvalidInputException([String? message]) : super(message, 'Invalid Input');
+class MovieNotFoundException extends AppException {
+  MovieNotFoundException([String? message])
+      : super(message, 'Movie not found!');
 }
