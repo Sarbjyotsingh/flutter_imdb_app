@@ -11,3 +11,20 @@ const BoxDecoration kCustomListTileBoxDecoration = BoxDecoration(
     Radius.circular(10),
   ),
 );
+
+const TextStyle kAppBarTextStyle = TextStyle(
+  fontWeight: FontWeight.bold,
+  fontSize: 16,
+);
+
+const TextStyle kMovieTitleTextStyle = TextStyle(
+  fontSize: 30,
+  color: kGoldenColor,
+  fontWeight: FontWeight.bold,
+);
+
+const TextStyle kMovieSubTitleTextStyle = TextStyle(
+  fontSize: 14,
+  color: kWhiteColor,
+  fontWeight: FontWeight.w600,
+);
