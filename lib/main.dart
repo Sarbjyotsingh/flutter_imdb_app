@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_imdb_app/views/screens/home_screens.dart';
+import 'package:flutter_imdb_app/utils/colors.dart';
+import 'package:flutter_imdb_app/utils/routes/routes.dart';
+import 'package:flutter_imdb_app/utils/routes/routes_name.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,10 +16,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter IMDB App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: kPrimaryColor,
       ),
-      home: const HomeScreen(),
+      initialRoute: RoutesName.home,
+      onGenerateRoute: Routes.generateRoute,
     );
   }
 }
-
