@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_imdb_app/utils/constants.dart';
 import 'package:flutter_imdb_app/utils/helpers/debouncer.dart';
 import 'package:flutter_imdb_app/views/widgets/custom_search_field.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends ConsumerState<HomeScreen> {
   final TextEditingController _searchController = TextEditingController();
 
   final _debouncer = Debouncer(milliseconds: 300);
